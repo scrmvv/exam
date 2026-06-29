@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Формирование заявки — Корочки.есть</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="apply">
+  <header class="topbar">
+    <div class="page-wrap py-4">
+      <div class="flex items-center justify-between gap-4">
+        <a href="index.html" class="flex items-center gap-3">
+          <span class="logo-mark">К</span>
+          <span>
+            <span class="brand-title block">Корочки.есть</span>
+            <span class="brand-subtitle">портал записи на онлайн-курсы ДПО</span>
+          </span>
+        </a>
+        <nav class="desktop-nav">
+          <a class="nav-link" data-nav="home" href="index.html">Главная</a>
+          <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
+          <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
+          <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
+          <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
+          <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
+          <button class="nav-link" data-auth-only data-logout type="button">Выйти</button>
+        </nav>
+        <button class="mobile-menu btn btn-soft" data-menu-button type="button">Меню</button>
+      </div>
+      <nav class="mobile-panel mt-3" data-mobile-panel>
+        <a class="nav-link" data-nav="home" href="index.html">Главная</a>
+        <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
+        <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
+        <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
+        <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
+        <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
+        <button class="nav-link text-left" data-auth-only data-logout type="button">Выйти</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-wrap py-8 lg:py-12">
+    <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <section>
+        <span class="tag">форма заявки</span>
+        <h1 class="section-title mt-4">Формирование заявки</h1>
+        <p class="section-text mt-4">Пользователь указывает название курса, желаемую дату начала обучения и способ оплаты. После нажатия на кнопку «Отправить» заявка получает статус «Новая».</p>
+
+        <div class="info-grid mt-6">
+          <div class="info-item">
+            <h3>Пользователь</h3>
+            <p><span data-current-user>гость</span></p>
+          </div>
+          <div class="info-item">
+            <h3>Доступные способы оплаты</h3>
+            <p>Наличными или переводом по номеру телефона.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card p-5 md:p-7">
+        <form id="applyForm" class="grid gap-4">
+          <div>
+            <label class="form-label" for="courseName">Наименование курса</label>
+            <input class="form-input" id="courseName" name="courseName" required list="courseList" placeholder="Например: Оператор 1С">
+            <datalist id="courseList">
+              <option value="Оператор 1С: первые шаги"></option>
+              <option value="Сметное дело для начинающих"></option>
+              <option value="Кадровое делопроизводство"></option>
+              <option value="Бухгалтерский учет"></option>
+              <option value="Документооборот в организации"></option>
+            </datalist>
+          </div>
+
+          <div>
+            <label class="form-label" for="startDate">Желаемая дата начала обучения</label>
+            <input class="form-input" id="startDate" name="startDate" type="date" required>
+          </div>
+
+          <div>
+            <label class="form-label" for="payment">Способ оплаты</label>
+            <select class="form-select" id="payment" name="payment" required>
+              <option value="">Выберите вариант</option>
+              <option value="Наличными">Наличными</option>
+              <option value="Перевод по номеру телефона">Перевод по номеру телефона</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Отправить</button>
+          <div id="applyResult" aria-live="polite"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/apply.js"></script>
+</body>
+</html>

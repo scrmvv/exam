@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — Корочки.есть</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="register">
+  <header class="topbar">
+    <div class="page-wrap py-4">
+      <div class="flex items-center justify-between gap-4">
+        <a href="index.html" class="flex items-center gap-3">
+          <span class="logo-mark">К</span>
+          <span>
+            <span class="brand-title block">Корочки.есть</span>
+            <span class="brand-subtitle">портал записи на онлайн-курсы ДПО</span>
+          </span>
+        </a>
+        <nav class="desktop-nav">
+          <a class="nav-link" data-nav="home" href="index.html">Главная</a>
+          <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
+          <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
+          <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
+          <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
+          <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
+          <button class="nav-link" data-auth-only data-logout type="button">Выйти</button>
+        </nav>
+        <button class="mobile-menu btn btn-soft" data-menu-button type="button">Меню</button>
+      </div>
+      <nav class="mobile-panel mt-3" data-mobile-panel>
+        <a class="nav-link" data-nav="home" href="index.html">Главная</a>
+        <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
+        <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
+        <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
+        <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
+        <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
+        <button class="nav-link text-left" data-auth-only data-logout type="button">Выйти</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-wrap py-8 lg:py-12">
+    <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <section>
+        <span class="tag">обязательные поля</span>
+        <h1 class="section-title mt-4">Регистрация пользователя</h1>
+        <p class="section-text mt-4">Все поля обязательны для заполнения. Логин должен быть уникальным и содержать только латиницу и цифры, не менее 6 символов.</p>
+
+        <div class="info-grid mt-6">
+          <div class="info-item">
+            <h3>Требования к данным</h3>
+            <p>Пароль — от 8 символов. ФИО — кириллица и пробелы. Телефон — формат 8(XXX)XXX-XX-XX. Почта — корректный e-mail.</p>
+          </div>
+          <div class="info-item">
+            <h3>Тестовый доступ</h3>
+            <p>Для проверки можно использовать пользователя <strong>user123</strong> с паролем <strong>123456</strong>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card p-5 md:p-7">
+        <form id="registerForm" class="grid gap-4" novalidate>
+          <div>
+            <label class="form-label" for="login">Логин</label>
+            <input class="form-input" id="login" name="login" required placeholder="student01">
+            <p class="field-error" data-error="login"></p>
+          </div>
+
+          <div>
+            <label class="form-label" for="password">Пароль</label>
+            <input class="form-input" id="password" name="password" type="password" required placeholder="Минимум 8 символов">
+            <p class="field-error" data-error="password"></p>
+          </div>
+
+          <div>
+            <label class="form-label" for="name">ФИО</label>
+            <input class="form-input" id="name" name="name" required placeholder="Иванов Иван Иванович">
+            <p class="field-error" data-error="name"></p>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <label class="form-label" for="phone">Телефон</label>
+              <input class="form-input" id="phone" name="phone" required placeholder="8(917)123-45-67">
+              <p class="field-error" data-error="phone"></p>
+            </div>
+            <div>
+              <label class="form-label" for="email">Электронная почта</label>
+              <input class="form-input" id="email" name="email" type="email" required placeholder="mail@example.ru">
+              <p class="field-error" data-error="email"></p>
+            </div>
+          </div>
+
+          <button class="btn btn-primary mt-2" type="submit">Зарегистрироваться</button>
+          <div id="registerResult" aria-live="polite"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/register.js"></script>
+</body>
+</html>

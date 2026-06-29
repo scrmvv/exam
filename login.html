@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация — Корочки.есть</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="login">
+  <header class="topbar">
+    <div class="page-wrap py-4">
+      <div class="flex items-center justify-between gap-4">
+        <a href="index.html" class="flex items-center gap-3">
+          <span class="logo-mark">К</span>
+          <span>
+            <span class="brand-title block">Корочки.есть</span>
+            <span class="brand-subtitle">портал записи на онлайн-курсы ДПО</span>
+          </span>
+        </a>
+        <nav class="desktop-nav">
+          <a class="nav-link" data-nav="home" href="index.html">Главная</a>
+          <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
+          <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
+          <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
+          <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
+          <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
+          <button class="nav-link" data-auth-only data-logout type="button">Выйти</button>
+        </nav>
+        <button class="mobile-menu btn btn-soft" data-menu-button type="button">Меню</button>
+      </div>
+      <nav class="mobile-panel mt-3" data-mobile-panel>
+        <a class="nav-link" data-nav="home" href="index.html">Главная</a>
+        <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
+        <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
+        <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
+        <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
+        <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
+        <button class="nav-link text-left" data-auth-only data-logout type="button">Выйти</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-wrap py-8 lg:py-12">
+    <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+      <section>
+        <span class="tag">доступ в систему</span>
+        <h1 class="section-title mt-4">Авторизация пользователя</h1>
+        <p class="section-text mt-4">На этой странице зарегистрированный пользователь вводит логин и пароль для перехода на страницу просмотра заявок.</p>
+
+        <div class="mt-6 grid gap-3 sm:grid-cols-2">
+          <div class="info-item">
+            <h3>Пользователь</h3>
+            <p>user123 / 123456</p>
+          </div>
+          <div class="info-item">
+            <h3>Администратор</h3>
+            <p>Admin / KorokNET</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card p-5 md:p-7">
+        <form id="loginForm" class="grid gap-4">
+          <div>
+            <label class="form-label" for="login">Логин</label>
+            <input class="form-input" id="login" name="login" required autocomplete="username" placeholder="user123">
+          </div>
+
+          <div>
+            <label class="form-label" for="password">Пароль</label>
+            <input class="form-input" id="password" name="password" required type="password" autocomplete="current-password" placeholder="123456">
+          </div>
+
+          <button class="btn btn-primary" type="submit">Войти</button>
+          <div id="loginResult" aria-live="polite"></div>
+        </form>
+
+        <p class="mt-5 text-sm text-slate-500">Еще не зарегистрированы? <a class="font-semibold text-slate-700" href="register.html">Перейти к регистрации</a></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

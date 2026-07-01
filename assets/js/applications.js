@@ -1,12 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const user = getCurrentUser();
-  if (!user) {
-    location.href = 'login.html';
-    return;
-  }
+const user = requireUser();
 
-  const list = document.querySelector('#applicationsList');
-  const empty = document.querySelector('#emptyApplications');
+if (user) {
+  const list = $('#applicationsList');
+  const empty = $('#emptyApplications');
 
   function render() {
     const applications = getApplications().filter((item) => item.login === user.login);
@@ -50,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!button) return;
 
     const appId = button.dataset.saveReview;
-    const textarea = document.querySelector(`#review-${appId}`);
+    const textarea = $(`#review-${appId}`);
     const applications = getApplications();
     const target = applications.find((item) => item.id === appId);
 
@@ -65,4 +61,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   render();
-});
+}

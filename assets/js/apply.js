@@ -1,13 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const user = getCurrentUser();
-  if (!user) {
-    location.href = 'login.html';
-    return;
-  }
+const user = requireUser();
 
-  const form = document.querySelector('#applyForm');
-  const result = document.querySelector('#applyResult');
-  const courseInput = document.querySelector('#courseName');
+if (user) {
+  const form = $('#applyForm');
+  const result = $('#applyResult');
+  const courseInput = $('#courseName');
   const params = new URLSearchParams(location.search);
   const courseFromUrl = params.get('course');
 
@@ -15,17 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     courseInput.value = courseFromUrl;
   }
 
-  function setResult(text, type) {
-    result.textContent = text;
-    result.className = `notice ${type === 'success' ? 'notice-success' : 'notice-error'}`;
-  }
-
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(form).entries());
 
     if (!data.courseName.trim() || !data.startDate || !data.payment) {
-      setResult('Заполните название курса, дату начала и способ оплаты.', 'error');
+      setNotice(result, 'Заполните название курса, дату начала и способ оплаты.');
       return;
     }
 
@@ -43,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     saveApplications(applications);
-    setResult('Заявка отправлена. Статус заявки: «Новая».', 'success');
+    setNotice(result, 'Заявка отправлена. Статус заявки: «Новая».', 'success');
     form.reset();
     setTimeout(() => location.href = 'applications.html', 900);
   });
-});
+}

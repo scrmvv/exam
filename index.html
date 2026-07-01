@@ -4,43 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Корочки.есть — портал онлайн-курсов</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script>document.documentElement.classList.toggle('user-active', !!localStorage.getItem('korochki_session'));</script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="home">
   <header class="topbar">
     <div class="page-wrap py-4">
-      <div class="flex items-center justify-between gap-4">
-        <a href="index.html" class="flex items-center gap-3">
+      <div class="header-row">
+        <a href="index.html" class="brand-link">
           <span class="logo-mark">К</span>
           <span>
             <span class="brand-title block">Корочки.есть</span>
             <span class="brand-subtitle">портал записи на онлайн-курсы ДПО</span>
           </span>
         </a>
-
-        <nav class="desktop-nav">
+        <nav class="desktop-nav main-nav">
           <a class="nav-link" data-nav="home" href="index.html">Главная</a>
-          <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
-          <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
           <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
           <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
           <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
-          <button class="nav-link" data-auth-only data-logout type="button">Выйти</button>
         </nav>
-
-        <button class="mobile-menu btn btn-soft" data-menu-button type="button">Меню</button>
+        <nav class="desktop-nav auth-nav">
+          <a class="nav-link" data-guest-link data-nav="register" href="register.html">Регистрация</a>
+          <a class="nav-link nav-link-primary" data-guest-link data-nav="login" href="login.html">Авторизация</a>
+          <button class="nav-link nav-link-primary" data-user-link data-logout type="button">Выйти</button>
+        </nav>
       </div>
-
-      <nav class="mobile-panel mt-3" data-mobile-panel>
-        <a class="nav-link" data-nav="home" href="index.html">Главная</a>
-        <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
-        <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
-        <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
-        <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
-        <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
-        <button class="nav-link text-left" data-auth-only data-logout type="button">Выйти</button>
-      </nav>
     </div>
   </header>
 
@@ -48,8 +37,7 @@
     <section class="page-wrap py-8 lg:py-12">
       <div class="hero-box grid gap-8 p-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-8">
         <div>
-          <span class="tag">учебный проект</span>
-          <h1 class="section-title mt-4">Информационная система для записи на онлайн-курсы</h1>
+          <h1 class="section-title">Информационная система для записи на онлайн-курсы</h1>
           <p class="section-text mt-4">
             Сайт предназначен для подачи заявок на программы дополнительного профессионального образования.
             Пользователь проходит регистрацию, авторизацию, создает заявку и отслеживает ее статус.
@@ -97,57 +85,12 @@
         </div>
       </div>
     </section>
-
-    <section class="page-wrap py-4 lg:py-8">
-      <div class="grid gap-4 md:grid-cols-3">
-        <article class="paper-card p-5">
-          <span class="tag">страница 1</span>
-          <h2 class="mt-3 text-2xl font-bold">Регистрация</h2>
-          <p class="section-text mt-3">Добавление нового пользователя с проверкой логина, пароля, ФИО, телефона и адреса электронной почты.</p>
-        </article>
-
-        <article class="paper-card p-5">
-          <span class="tag">страница 2</span>
-          <h2 class="mt-3 text-2xl font-bold">Авторизация</h2>
-          <p class="section-text mt-3">Вход зарегистрированного пользователя по логину и паролю с обработкой ошибок при неверном вводе данных.</p>
-        </article>
-
-        <article class="paper-card p-5">
-          <span class="tag">страница 3</span>
-          <h2 class="mt-3 text-2xl font-bold">Заявки</h2>
-          <p class="section-text mt-3">Просмотр созданных заявок, отправка новой заявки и работа администратора со статусами обучения.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="page-wrap py-8 lg:py-10">
-      <div class="card p-6 lg:p-8">
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <div class="info-item">
-            <h3>Курс</h3>
-            <p>Пользователь указывает название курса в форме заявки.</p>
-          </div>
-          <div class="info-item">
-            <h3>Дата начала</h3>
-            <p>Выбирается желаемая дата начала обучения.</p>
-          </div>
-          <div class="info-item">
-            <h3>Оплата</h3>
-            <p>Доступно два варианта: наличными или переводом по номеру телефона.</p>
-          </div>
-          <div class="info-item">
-            <h3>Статус</h3>
-            <p>Заявка может быть новой, в обучении или завершенной.</p>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="page-wrap py-10 text-sm text-slate-500">
     <div class="footer-line flex flex-col gap-2 pt-6 md:flex-row md:items-center md:justify-between">
       <p>© 2026 Корочки.есть</p>
-      <p>Фронтенд без backend: HTML, CSS, Tailwind, JavaScript</p>
+      <p>by scrmvv with love</p>
     </div>
   </footer>
 

@@ -4,40 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Формирование заявки — Корочки.есть</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    const hasUser = !!localStorage.getItem('korochki_session');
+    document.documentElement.classList.toggle('user-active', hasUser);
+    if (!hasUser) location.replace('login.html');
+  </script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="apply">
   <header class="topbar">
     <div class="page-wrap py-4">
-      <div class="flex items-center justify-between gap-4">
-        <a href="index.html" class="flex items-center gap-3">
+      <div class="header-row">
+        <a href="index.html" class="brand-link">
           <span class="logo-mark">К</span>
           <span>
             <span class="brand-title block">Корочки.есть</span>
             <span class="brand-subtitle">портал записи на онлайн-курсы ДПО</span>
           </span>
         </a>
-        <nav class="desktop-nav">
+        <nav class="desktop-nav main-nav">
           <a class="nav-link" data-nav="home" href="index.html">Главная</a>
-          <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
-          <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
           <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
           <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
           <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
-          <button class="nav-link" data-auth-only data-logout type="button">Выйти</button>
         </nav>
-        <button class="mobile-menu btn btn-soft" data-menu-button type="button">Меню</button>
+        <nav class="desktop-nav auth-nav">
+          <a class="nav-link" data-guest-link data-nav="register" href="register.html">Регистрация</a>
+          <a class="nav-link nav-link-primary" data-guest-link data-nav="login" href="login.html">Авторизация</a>
+          <button class="nav-link nav-link-primary" data-user-link data-logout type="button">Выйти</button>
+        </nav>
       </div>
-      <nav class="mobile-panel mt-3" data-mobile-panel>
-        <a class="nav-link" data-nav="home" href="index.html">Главная</a>
-        <a class="nav-link" data-nav="register" data-guest-only href="register.html">Регистрация</a>
-        <a class="nav-link" data-nav="login" data-guest-only href="login.html">Авторизация</a>
-        <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
-        <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
-        <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
-        <button class="nav-link text-left" data-auth-only data-logout type="button">Выйти</button>
-      </nav>
     </div>
   </header>
 
@@ -94,6 +90,13 @@
       </section>
     </div>
   </main>
+
+  <footer class="page-wrap py-10 text-sm text-slate-500">
+    <div class="footer-line flex flex-col gap-2 pt-6 md:flex-row md:items-center md:justify-between">
+      <p>© 2026 Корочки.есть</p>
+      <p>by scrmvv with love</p>
+    </div>
+  </footer>
 
   <script src="assets/js/storage.js"></script>
   <script src="assets/js/main.js"></script>

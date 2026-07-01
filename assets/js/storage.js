@@ -73,56 +73,33 @@ function seedData() {
   }
 }
 
-function getUsers() {
-  return readStorage(STORAGE_KEYS.users, []);
-}
-
-function saveUsers(users) {
-  writeStorage(STORAGE_KEYS.users, users);
-}
-
-function getApplications() {
-  return readStorage(STORAGE_KEYS.applications, []);
-}
-
-function saveApplications(applications) {
-  writeStorage(STORAGE_KEYS.applications, applications);
-}
-
-function getCurrentUserLogin() {
-  return localStorage.getItem(STORAGE_KEYS.session);
-}
+const getUsers = () => readStorage(STORAGE_KEYS.users, []);
+const saveUsers = (users) => writeStorage(STORAGE_KEYS.users, users);
+const getApplications = () => readStorage(STORAGE_KEYS.applications, []);
+const saveApplications = (applications) => writeStorage(STORAGE_KEYS.applications, applications);
 
 function getCurrentUser() {
-  const login = getCurrentUserLogin();
+  const login = localStorage.getItem(STORAGE_KEYS.session);
   if (!login) return null;
   return getUsers().find((user) => user.login === login) || null;
 }
 
-function setCurrentUser(login) {
-  localStorage.setItem(STORAGE_KEYS.session, login);
-}
-
-function clearCurrentUser() {
-  localStorage.removeItem(STORAGE_KEYS.session);
-}
+const setCurrentUser = (login) => localStorage.setItem(STORAGE_KEYS.session, login);
+const clearCurrentUser = () => localStorage.removeItem(STORAGE_KEYS.session);
 
 function setAdminSession(value) {
-  if (value) {
-    localStorage.setItem(STORAGE_KEYS.adminSession, 'true');
-  } else {
-    localStorage.removeItem(STORAGE_KEYS.adminSession);
-  }
+  value
+    ? localStorage.setItem(STORAGE_KEYS.adminSession, 'true')
+    : localStorage.removeItem(STORAGE_KEYS.adminSession);
 }
 
-function isAdminActive() {
-  return localStorage.getItem(STORAGE_KEYS.adminSession) === 'true';
-}
+const isAdminActive = () => localStorage.getItem(STORAGE_KEYS.adminSession) === 'true';
 
 function statusClass(status) {
-  if (status === 'Идет обучение') return 'status-study';
-  if (status === 'Обучение завершено') return 'status-done';
-  return 'status-new';
+  return {
+    'Идет обучение': 'status-study',
+    'Обучение завершено': 'status-done'
+  }[status] || 'status-new';
 }
 
 function formatDate(value) {
@@ -131,8 +108,6 @@ function formatDate(value) {
   return date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' });
 }
 
-function makeId() {
-  return 'app-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-}
+const makeId = () => 'app-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
 seedData();

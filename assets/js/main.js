@@ -1,39 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const currentPage = document.body.dataset.page;
-  const links = document.querySelectorAll('[data-nav]');
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const currentUser = getCurrentUser();
 
-  links.forEach((link) => {
-    if (link.dataset.nav === currentPage) {
-      link.classList.add('active');
-    }
-  });
+document.documentElement.classList.toggle('user-active', !!currentUser);
 
-  const currentUser = getCurrentUser();
-  const userPlaces = document.querySelectorAll('[data-current-user]');
-  userPlaces.forEach((place) => {
-    place.textContent = currentUser ? currentUser.name : 'гость';
-  });
-
-  document.querySelectorAll('[data-auth-only]').forEach((item) => {
-    item.style.display = currentUser ? '' : 'none';
-  });
-
-  document.querySelectorAll('[data-guest-only]').forEach((item) => {
-    item.style.display = currentUser ? 'none' : '';
-  });
-
-  document.querySelectorAll('[data-logout]').forEach((button) => {
-    button.addEventListener('click', () => {
-      clearCurrentUser();
-      location.href = 'index.html';
-    });
-  });
-
-  const menuButton = document.querySelector('[data-menu-button]');
-  const mobilePanel = document.querySelector('[data-mobile-panel]');
-  if (menuButton && mobilePanel) {
-    menuButton.addEventListener('click', () => {
-      mobilePanel.classList.toggle('open');
-    });
-  }
+$$('[data-current-user]').forEach((place) => {
+  place.textContent = currentUser ? currentUser.name : 'гость';
 });
+
+$$('[data-guest-link]').forEach((link) => {
+  link.style.display = currentUser ? 'none' : '';
+});
+
+$$('[data-user-link]').forEach((link) => {
+  link.style.display = currentUser ? '' : 'none';
+});
+
+$$('[data-logout]').forEach((button) => {
+  button.addEventListener('click', () => {
+    clearCurrentUser();
+    location.href = 'index.html';
+  });
+});
+
+function setNotice(element, text = '', type = 'error') {
+  if (!element) return;
+  element.textContent = text;
+  element.className = text ? `notice ${type === 'success' ? 'notice-success' : 'notice-error'}` : '';
+}
+
+function requireUser() {
+  const user = getCurrentUser();
+  if (!user) location.href = 'login.html';
+  return user;
+}

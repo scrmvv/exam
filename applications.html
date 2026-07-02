@@ -22,6 +22,13 @@
             <span class="brand-subtitle">портал записи на онлайн-курсы ДПО</span>
           </span>
         </a>
+        <div class="header-actions">
+          <button class="mobile-menu-toggle" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
         <nav class="desktop-nav main-nav">
           <a class="nav-link" data-nav="home" href="index.html">Главная</a>
           <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
@@ -33,6 +40,19 @@
           <a class="nav-link nav-link-primary" data-guest-link data-nav="login" href="login.html">Авторизация</a>
           <button class="nav-link nav-link-primary" data-user-link data-logout type="button">Выйти</button>
         </nav>
+        <div class="mobile-nav-panel" data-mobile-nav>
+          <nav class="main-nav">
+            <a class="nav-link" data-nav="home" href="index.html">Главная</a>
+            <a class="nav-link" data-nav="applications" href="applications.html">Просмотр заявок</a>
+            <a class="nav-link" data-nav="apply" href="apply.html">Новая заявка</a>
+            <a class="nav-link" data-nav="admin" href="admin.html">Администратор</a>
+          </nav>
+          <nav class="auth-nav">
+            <a class="nav-link" data-guest-link data-nav="register" href="register.html">Регистрация</a>
+            <a class="nav-link nav-link-primary" data-guest-link data-nav="login" href="login.html">Авторизация</a>
+            <button class="nav-link nav-link-primary" data-user-link data-logout type="button">Выйти</button>
+          </nav>
+        </div>
       </div>
     </div>
   </header>
